@@ -6,7 +6,7 @@ import Services from './Components/Services';
 import Mission from './Components/Mission';
 import Faq from './Components/Faq';
 import Footer from './Components/footer';
-import ContactUs from './Components/Contact';
+import ContactUs from './Components/ContactUs';
 
 // Import Link for navigation
 
