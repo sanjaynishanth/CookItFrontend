@@ -6,7 +6,6 @@ import Services from './Components/Services';
 import Mission from './Components/Mission';
 import Faq from './Components/Faq';
 import Footer from './Components/footer';
-import ContactUs from './Components/ContactUs';
 
 // Import Link for navigation
 
@@ -30,17 +29,8 @@ function App() {
           }
         />
 
-        {/* Contact Page Route */}
-        <Route
-          path="/contact"
-          element={
-            <>
-              <ContactUs />
-              {/* <Footer /> */}
-               {/* Footer appears on Contact page */}
-            </>
-          }
-        />
+        
+        
       </Routes>
     </div>
   );
