@@ -5,7 +5,7 @@ import SocialMedia from "./ui/SocialMedia";
 
 const Footer = () => {
     return (
-        <section className="relative py-10 bg-gray-50 sm:pt-16 lg:pt-24 text-center">
+        <section className="relative py-10 bg-gray-50 sm:pt-16 lg:pt-15 text-center">
 
 <div className="flex justify-center">
     <hr className="border-t-2 border-gray-300 my-8 w-full max-w-5xl" />
