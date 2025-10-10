@@ -6,6 +6,7 @@ import Services from './Components/Services';
 import Mission from './Components/Mission';
 import Faq from './Components/Faq';
 import Footer from './Components/footer';
+import Portfolio from './Pages/Portfolio';
 
 // Import Link for navigation
 
@@ -28,9 +29,7 @@ function App() {
             </>
           }
         />
-
-        
-        
+        <Route path='/portfolio' element={<Portfolio/>}/>
       </Routes>
     </div>
   );
