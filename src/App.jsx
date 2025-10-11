@@ -22,7 +22,7 @@ function App() {
             element={
               <>
                 <Hero />
-                {/* <Showreel /> */}
+                <Showreel />
                 <About /> {/* Set id for About Us section */}
                 <Services /> {/* Set id for Services section */}
                 <Mission />
