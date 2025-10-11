@@ -12,26 +12,28 @@ import Portfolio from './Pages/Portfolio';
 
 function App() {
   return (
-    <div className="app-container bg-gray-50">
-      <Routes>
-        {/* Home Page Route */}
-        <Route
-          path="/"
-          element={
-            <>
-              <Hero />
-              <Showreel />
-              <About /> {/* Set id for About Us section */}
-              <Services /> {/* Set id for Services section */}
-              <Mission />
-              <Faq />
-              <Footer /> {/* Footer appears on Home */}
-            </>
-          }
-        />
-        <Route path='/portfolio' element={<Portfolio/>}/>
-      </Routes>
-    </div>
+    <BrowserRouter>
+      <div className="app-container bg-gray-50">
+        <Routes>
+          {/* Home Page Route */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                <Showreel />
+                <About /> {/* Set id for About Us section */}
+                <Services /> {/* Set id for Services section */}
+                <Mission />
+                <Faq />
+                <Footer /> {/* Footer appears on Home */}
+              </>
+            }
+          />
+          <Route path='/portfolio' element={<Portfolio />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
