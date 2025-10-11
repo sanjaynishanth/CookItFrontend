@@ -28,7 +28,7 @@ const Footer = () => {
 
                 {/* Copyright */}
                 <p className="text-sm text-gray-600 mt-6">
-                    © CookIT 2025, All Rights Reserved.
+                    © CookIT {new Date().getFullYear()} All Rights Reserved.
                 </p>
             </div>
         </section>

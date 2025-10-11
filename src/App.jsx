@@ -6,8 +6,11 @@ import Services from './Components/Services';
 import Mission from './Components/Mission';
 import Faq from './Components/Faq';
 import Footer from './Components/footer';
+import { BrowserRouter } from 'react-router-dom';
 import Portfolio from './Pages/Portfolio';
+import ContactSection from './Components/Contact';
 
+import ContactSection from './Components/Contact';
 // Import Link for navigation
 
 function App() {
@@ -16,6 +19,7 @@ function App() {
       <div className="app-container bg-gray-50">
         <Routes>
           {/* Home Page Route */}
+           <Route path="/contact" element={<ContactSection />} />
           <Route
             path="/"
             element={

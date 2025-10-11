@@ -20,7 +20,7 @@ const About = () => {
           className="max-w-xl text-center mx-auto"
         >
           <h1 className="block font-bold text-gray-800 text-4xl md:text-5xl lg:text-3xl">
-            Who are we
+            Who are we ?
           </h1>
           <span className="relative inline-flex sm:inline block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl">
             <span className="bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] blur-lg filter opacity-30 w-full h-full absolute inset-0"></span>
