@@ -21,7 +21,7 @@ function App() {
             path="/"
             element={
               <>
-                {/* <Hero /> */}
+                <Hero /> 
                 <Showreel />
                 <About /> {/* Set id for About Us section */}
                 <Services /> {/* Set id for Services section */}
