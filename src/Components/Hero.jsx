@@ -63,13 +63,13 @@ const Hero = () => {
               </Link>
 
               {/* Projects link */}
-              <a 
-    href="/portfolio" 
-    title="Projects" 
-    className="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
-  >
-    Projects
-  </a>
+              <a
+                href="/portfolio"
+                title="Projects"
+                className="text-base font-medium text-gray-900 transition-all duration-200 cursor-pointer rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
+              >
+                Projects
+              </a>
             </div>
 
             <div className="hidden lg:ml-auto lg:flex lg:items-center lg:space-x-10">
@@ -103,19 +103,19 @@ const Hero = () => {
               <div className="px-1 py-8">
                 <div className="grid gap-y-7">
                   <Link to='home'>
-                  <p   className="flex items-center cursor-pointer  p-3 -m-3 text-base font-medium text-gray-900 transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Home </p>
-                  
+                    <p className="flex items-center cursor-pointer  p-3 -m-3 text-base font-medium text-gray-900 transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Home </p>
+
                   </Link>
 
                   <Link to='about'>
 
-                  <p   className="flex items-center cursor-pointer p-3 -m-3 text-base font-medium text-gray-900 transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> About Us </p>
+                    <p className="flex items-center cursor-pointer p-3 -m-3 text-base font-medium text-gray-900 transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> About Us </p>
 
                   </Link>
 
                   <Link to='services'>
-                  <p   className="flex items-center cursor-pointer p-3 -m-3 text-base font-medium text-gray-900 transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Services </p>
-                  
+                    <p className="flex items-center cursor-pointer p-3 -m-3 text-base font-medium text-gray-900 transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Services </p>
+
                   </Link>
 
 
@@ -153,11 +153,11 @@ const Hero = () => {
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1
               className="px-6 text-lg text-gray-600 font-inter"
-              initial={{ opacity: 0, y: 20 }}  // Initial state: hidden and slightly below
-              animate={{ opacity: 1, y: 0 }}    // Animate to visible and reset position
-              transition={{ duration: 0.6, delay: 0.2 }} // Transition duration with delay
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Spice Up Your Business with CookIT !
+              Spice Up Your Digital Presence with CookIT
             </motion.h1>
 
             <motion.p
@@ -166,12 +166,14 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Grow your business digitally, <br />
+              We craft digital experiences <br />
               <span className="relative inline-flex sm:inline">
                 <span className="bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] blur-lg filter opacity-30 w-full h-full absolute inset-0"></span>
-                <span className="relative">Your Growth, Our Mission !</span>
+                <span className="relative">that make brands unforgettable.</span>
               </span>
             </motion.p>
+
+
 
             <div className="px-8 sm:items-center sm:justify-center sm:px-0 sm:space-x-5 sm:flex mt-10">
               {/* <a
@@ -209,7 +211,9 @@ const Hero = () => {
               </motion.div>
             </div>
 
-            <p className="mt-6 text-base text-gray-500 font-inter">Empowering your brand's growth with innovative solutions !</p>
+            <p className="mt-6 text-base text-gray-500 font-inter">
+              From stunning design to seamless development — we turn ideas into impact.
+            </p>
           </div>
         </div>
 

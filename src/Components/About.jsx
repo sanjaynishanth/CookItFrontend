@@ -39,15 +39,17 @@ const About = () => {
             className="lg:w-1/2 max-w-lg text-center lg:text-left"
           >
             <p className="text-lg text-gray-600 mb-8 about-text font-[Inter]">
-              At <strong>CookIT</strong>, we help businesses grow digitally. In
-              today's fast-paced world, a strong online presence is essential—we
-              make it happen!
+              At <strong>CookIT</strong>, we craft digital experiences that make
+              brands unforgettable. We believe creativity and technology work
+              best together — helping businesses connect, inspire, and grow.
             </p>
             <p className="text-lg text-gray-600 mb-4 font-[Inter]">
-              From digital marketing to website development, social media
-              management, and content creation, we offer tailored solutions to
-              boost visibility, attract customers, and drive engagement.
+              From website design and branding to social media and storytelling,
+              we transform ideas into experiences that leave a lasting
+              impression. Every project we build is fueled by strategy,
+              innovation, and purpose.
             </p>
+
             {/* Buttons */}
             <div className="mt-8 flex justify-center lg:justify-start">
               <motion.a

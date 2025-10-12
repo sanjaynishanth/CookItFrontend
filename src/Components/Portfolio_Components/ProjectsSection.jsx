@@ -1,22 +1,21 @@
 // src/components/ProjectsSection.jsx
 import React, { useState, useMemo } from "react";
-
 import projectsData from "../../utils/ProjectData";
 
-
-// --- Project Card ---
+// --- Project Card (No changes needed here) ---
 const ProjectCard = ({ project }) => {
   const accentColor = "#2563EB";
   const isVideo = project.category === "Video";
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-2xl shadow-md border hover:shadow-xl transition-all duration-500 cursor-pointer ${isVideo ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'
-        }`}
+      className={`group relative overflow-hidden rounded-2xl shadow-md border hover:shadow-xl transition-all duration-500 cursor-pointer ${
+        isVideo ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'
+      }`}
     >
       {isVideo ? (
         // Vertical Reel / Shorts Style
-        <div className="relative w-full mx-auto aspect-[9/16] max-h-[500px] rounded-2xl overflow-hidden">
+        <div className="relative w-full mx-auto aspect-[9/16] max-h-[550px] rounded-2xl overflow-hidden">
           <div className="absolute inset-0 flex flex-col justify-between">
             {/* Video Preview */}
             <img
@@ -108,14 +107,34 @@ const ProjectsSection = () => {
   const [filter, setFilter] = useState("Website");
   const accentColor = "#2563EB";
   const categories = ["Website", "Video"];
+  const MAX_FEATURED_VIDEOS = 12;
 
-  const filteredProjects = useMemo(() => {
+  // 1. Filter all projects based on the current category
+  const allFilteredProjects = useMemo(() => {
     return projectsData.filter(p => p.category === filter);
   }, [filter]);
+
+  // 2. Separate video projects into "Featured" and "Other"
+  const { featuredProjects, otherDomainProjects } = useMemo(() => {
+    if (filter === "Video") {
+      // The first 12 videos are considered "Featured" (Doctor Clients)
+      const featured = allFilteredProjects.slice(0, MAX_FEATURED_VIDEOS);
+      // The rest are "Other Domain" videos
+      const other = allFilteredProjects.slice(MAX_FEATURED_VIDEOS);
+      return { featuredProjects: featured, otherDomainProjects: other };
+    }
+    // If not 'Video' filter, all projects are considered 'featured' for display
+    return { featuredProjects: allFilteredProjects, otherDomainProjects: [] };
+  }, [filter, allFilteredProjects]);
+
+
+  // Determine which list to display in the main grid
+  const projectsToDisplay = filter === 'Video' ? featuredProjects : allFilteredProjects;
 
   return (
     <section className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight mb-4">
@@ -132,10 +151,11 @@ const ProjectsSection = () => {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`text-sm md:text-base font-medium py-2 px-6 rounded-full transition-all duration-300 ${filter === cat
+              className={`text-sm md:text-base font-medium py-2 px-6 rounded-full transition-all duration-300 ${
+                filter === cat
                   ? "text-white shadow-md"
                   : "text-gray-700 hover:text-gray-900 hover:bg-gray-200"
-                }`}
+              }`}
               style={filter === cat ? { backgroundColor: accentColor } : {}}
             >
               {cat}
@@ -143,12 +163,39 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* Project Grid */}
+        {/* --- Primary Project Grid (Featured/Doctor Client Videos) --- */}
+        {filter === 'Video' && (
+             <h3 className="text-3xl font-bold text-gray-900 tracking-tight mb-8 text-center">
+                Featured Doctor Client Videos
+            </h3>
+        )}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map(project => (
+          {projectsToDisplay.map(project => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
+
+        {/* --- Separator for Second Section --- */}
+        {filter === 'Video' && otherDomainProjects.length > 0 && (
+            <div className="my-24">
+                <hr className="border-gray-300" />
+            </div>
+        )}
+
+        {/* --- Secondary Project Grid (Other Domain Videos) --- */}
+        {filter === 'Video' && otherDomainProjects.length > 0 && (
+            <div>
+                <h3 className="text-3xl font-bold text-gray-900 tracking-tight mb-8 text-center">
+                    Other Domain Videos
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {otherDomainProjects.map(project => (
+                        <ProjectCard key={project.id} project={project} />
+                    ))}
+                </div>
+            </div>
+        )}
 
       </div>
     </section>
