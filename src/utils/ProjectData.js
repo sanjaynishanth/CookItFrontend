@@ -1,38 +1,47 @@
 // utils/ProjectData.js
+import kadamban from "../assets/kadamban.png"
+import KV from "../assets/kvmedia.png"
+import botfolio from "../assets/botfolio.png"
+import Homyz from "../assets/RealEstate.png"
+import { Link } from "react-scroll";
 
 const projectsData = [
     // --- WEBSITE PROJECTS ---
     {
         id: 1,
-        title: "CookIT Platform Redesign",
+        title: "Kadamban",
         category: "Website",
-        tags: ["UI/UX", "Branding", "SaaS"],
-        image: "https://placehold.co/800x600/F8FAFC/2563EB?text=CookIT+Redesign",
-        description: "A complete overhaul of the CookIT interface, designed for simplicity and engagement."
+        tags: ["UI/UX", "Real Estate"],
+        image: kadamban,
+        description: "An elegant real estate website showcasing premium properties with a seamless browsing experience.",
+        link: "https://kadambangroup.com/"
     },
     {
         id: 3,
-        title: "Global E-Commerce Platform",
+        title: "KV Media Works",
         category: "Website",
-        tags: ["Next.js", "API", "Performance"],
-        image: "https://placehold.co/800x600/F8FAFC/2563EB?text=E-Commerce+Platform",
-        description: "Built a scalable e-commerce website optimized for speed, security, and responsiveness."
+        tags: ["React","UI/UX"],
+        image:KV,
+        description:"A sleek portfolio site for a media agency, crafted with precision to highlight creativity and brand identity.",
+        link: "https://kvmediaworks.me/"
     },
     {
         id: 6,
-        title: "Startup CRM Dashboard",
+        title: "Botfolio",
         category: "Website",
-        tags: ["React", "Data Viz", "PWA"],
-        image: "https://placehold.co/800x600/F8FAFC/2563EB?text=CRM+Dashboard",
-        description: "Developed a progressive web app for tracking client relations and sales pipelines."
+        tags: ["React", "Node.js", "DataBase"],
+        image: botfolio,
+        description:  "A modern developer portfolio platform and design to showcase technical expertise",
+        link: "https://botfolio.dev/"
     },
     {
         id: 17,
-        title: "Art Gallery Portfolio",
+        title: "Homyz",
         category: "Website",
-        tags: ["Design", "CMS", "SEO"],
-        image: "https://placehold.co/800x600/F8FAFC/2563EB?text=Art+Portfolio",
-        description: "A beautiful, minimalistic site to showcase an artist's collection with integrated CMS."
+        tags: ["UI/UX"],
+        image: Homyz,
+        description: "A minimalistic real estate web app delivering a smooth, responsive experience for property discovery.",
+        link: "https://homyz-react.netlify.app/"
     },
 
     // --- FEATURED VIDEO PROJECTS (Doctor Clients - First 12) ---
