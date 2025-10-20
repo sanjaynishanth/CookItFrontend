@@ -117,30 +117,7 @@ const projectsData = [
         image: "https://placehold.co/400x600/44403C/F8FAFC?text=GP+INTRO",
         description: "Video introducing the family doctors and the practice's patient-first philosophy."
     },
-    {
-        id: 13,
-        title: "Physical Therapy Exercise Demo 1",
-        category: "Video",
-        tags: ["Tutorial", "Instructional"],
-        image: "https://placehold.co/400x600/44403C/F8FAFC?text=PT+DEMO+1",
-        description: "Instructional video on at-home exercises for knee rehabilitation."
-    },
-    {
-        id: 14,
-        title: "Oncology Department Overview",
-        category: "Video",
-        tags: ["Hospital", "Information"],
-        image: "https://placehold.co/400x600/44403C/F8FAFC?text=ONCOLOGY+OVERVIEW",
-        description: "A sensitive and informative overview of the oncology services provided."
-    },
-    {
-        id: 15,
-        title: "Sleep Specialist PSA",
-        category: "Video",
-        tags: ["Public Service", "Health"],
-        image: "https://placehold.co/400x600/44403C/F8FAFC?text=SLEEP+PSA",
-        description: "A public awareness video on the importance of quality sleep by a specialist."
-    },
+   
 
     // --- OTHER DOMAIN VIDEO PROJECTS (Projects 13+) ---
     {
