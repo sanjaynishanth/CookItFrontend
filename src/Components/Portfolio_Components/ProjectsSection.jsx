@@ -2,7 +2,7 @@
 import React, { useState, useMemo } from "react";
 import projectsData from "../../utils/ProjectData";
 
-// --- Project Card (Updated to support in-page video embed and tag removal) ---
+// --- Project Card (Updated to fix thumbnail display and in-page video embed) ---
 const ProjectCard = ({ project }) => {
   const [isPlaying, setIsPlaying] = useState(false); // New state to control embed
   const accentColor = "#2563EB";
@@ -11,18 +11,17 @@ const ProjectCard = ({ project }) => {
   // Creates the embed link with autoplay and clean player parameters
   const embedLink = `${project.link}?autoplay=1&modestbranding=1&rel=0&showinfo=0&fs=1`;
 
-  if (isVideo) {
-    // Renders the Video Card with Play state toggle
-    return (
-      <div
-        className={`relative overflow-hidden rounded-2xl shadow-md border cursor-pointer hover:shadow-xl transition-all duration-500 ${
-          isPlaying
-            ? "bg-black border-gray-800"
-            : "bg-gray-900 border-gray-800"
-        }`}
-        // The onClick sets isPlaying to true, replacing the thumbnail with the iframe
-        onClick={() => setIsPlaying(true)}
-      >
+  return (
+    // Conditional rendering for the main wrapper based on project type
+    // Website cards still use <a> for external links
+    // Video cards now use a div, as the video plays internally
+    <div
+      className={`relative overflow-hidden rounded-2xl shadow-md border hover:shadow-xl transition-all duration-500 ${
+        isVideo ? "bg-gray-900 border-gray-800" : "bg-white border-gray-100"
+      }`}
+    >
+      {isVideo ? (
+        // --- Video Card ---
         <div className="relative w-full mx-auto aspect-[9/16] max-h-[550px] rounded-2xl overflow-hidden">
           {isPlaying ? (
             // --- IFRAME EMBED (Playing State) ---
@@ -35,8 +34,11 @@ const ProjectCard = ({ project }) => {
               className="w-full h-full"
             ></iframe>
           ) : (
-            // --- THUMBNAIL PREVIEW (Default State) ---
-            <div className="absolute inset-0 flex flex-col justify-between group">
+            // --- THUMBNAIL PREVIEW (Default State, clickable to start video) ---
+            <div
+              className="absolute inset-0 flex flex-col justify-between group cursor-pointer"
+              onClick={() => setIsPlaying(true)} // Click handler only on the preview area
+            >
               {/* Video Preview */}
               <img
                 src={project.image}
@@ -71,26 +73,18 @@ const ProjectCard = ({ project }) => {
                     {project.category}
                   </span>
                 </div>
-                {/* Tags removed as requested */}
               </div>
             </div>
           )}
         </div>
-      </div>
-    );
-  } else {
-    // Renders the Website Card (Preserves external link functionality)
-    return (
-      <a
-        href={project.link || "#"}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block group"
-      >
-        <div
-          className={`relative overflow-hidden rounded-2xl shadow-md border hover:shadow-xl transition-all duration-500 bg-white border-gray-100`}
+      ) : (
+        // --- Website Card (No changes here, retains external link) ---
+        <a
+          href={project.link || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block group"
         >
-          {/* Website Card Content */}
           <>
             <div className="aspect-w-4 aspect-h-3 bg-gray-100 overflow-hidden rounded-2xl">
               <img
@@ -112,30 +106,25 @@ const ProjectCard = ({ project }) => {
               <p className="text-gray-600 text-sm mb-3 leading-relaxed">
                 {project.description}
               </p>
-              <div className="flex flex-wrap gap-2">
-                {/* Tags removed as requested */}
-              </div>
+              <div className="flex flex-wrap gap-2"></div>
             </div>
           </>
-        </div>
-      </a>
-    );
-  }
+        </a>
+      )}
+    </div>
+  );
 };
 
-// --- Main Section (No functional changes, but included for completeness) ---
+// --- Main Section (No functional changes) ---
 const ProjectsSection = () => {
   const [filter, setFilter] = useState("Website");
   const accentColor = "#2563EB";
   const categories = ["Website", "Video"];
-  // const MAX_FEATURED_VIDEOS = 12; // Removed as it was unused
 
-  // 1. Filter all projects based on the current category
   const allFilteredProjects = useMemo(() => {
     return projectsData.filter((p) => p.category === filter);
   }, [filter]);
 
-  // 2. Separate video projects into "Featured" and "Other"
   const { featuredProjects, otherDomainProjects } = useMemo(() => {
     if (filter === "Video") {
       const featured = allFilteredProjects.filter(
@@ -147,7 +136,6 @@ const ProjectsSection = () => {
     return { featuredProjects: allFilteredProjects, otherDomainProjects: [] };
   }, [filter, allFilteredProjects]);
 
-  // Determine which list to display in the main grid
   const projectsToDisplay =
     filter === "Video" ? featuredProjects : allFilteredProjects;
 
