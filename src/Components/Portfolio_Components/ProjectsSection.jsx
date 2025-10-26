@@ -2,7 +2,7 @@
 import React, { useState, useMemo } from "react";
 import projectsData from "../../utils/ProjectData";
 
-// --- Project Card (FIXED: Simplified video card structure for thumbnail display) ---
+// --- Project Card (FIXED: Thumbnail display structure corrected) ---
 const ProjectCard = ({ project }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const accentColor = "#2563EB";
@@ -27,32 +27,34 @@ const ProjectCard = ({ project }) => {
     >
       {isVideo ? (
         // --- Video Card Logic ---
-        // New container to enforce 9/16 aspect ratio reliably
-        <div className="relative w-full mx-auto" style={{ paddingTop: '177.77%' /* 16/9 = 1.7777 */ }}> 
-          <div className="absolute inset-0">
-            {isPlaying ? (
-              // --- IFRAME EMBED (Playing State) ---
-              <iframe
-                src={embedLink}
-                title={project.title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            ) : (
-              // --- THUMBNAIL PREVIEW (Default State, clickable to start video) ---
-              <div
-                className="w-full h-full relative flex flex-col justify-between group cursor-pointer"
-                onClick={handleVideoClick}
-              >
-                {/* Video Preview Image (Now directly in the full container) */}
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover absolute inset-0 transform transition-transform duration-700 group-hover:scale-105"
-                />
+        // We use the original max-h and aspect classes to define the size
+        <div className="relative w-full mx-auto aspect-[9/16] max-h-[550px] rounded-2xl overflow-hidden">
+          {isPlaying ? (
+            // --- IFRAME EMBED (Playing State) ---
+            <iframe
+              src={embedLink}
+              title={project.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
+          ) : (
+            // --- THUMBNAIL PREVIEW (Default State, clickable to start video) ---
+            <div
+              className="w-full h-full relative group cursor-pointer"
+              onClick={handleVideoClick}
+            >
+              {/* Video Preview Image: Must fill the container completely */}
+              <img
+                src={project.image}
+                alt={project.title}
+                // Key Fix: The image is set to fill the container defined by the aspect ratio.
+                className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+              />
 
+              {/* Overlay Container: Must be absolute to cover the image */}
+              <div className="absolute inset-0 flex flex-col justify-between">
                 {/* Play Icon Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10 transition-opacity group-hover:bg-opacity-20 z-10">
                   <svg
@@ -69,7 +71,7 @@ const ProjectCard = ({ project }) => {
                   </svg>
                 </div>
 
-                {/* Footer Overlay (Placed above the image to be visible) */}
+                {/* Footer Overlay (Must be z-20 to sit above play icon) */}
                 <div className="p-4 pt-6 bg-gradient-to-t from-black/80 to-transparent absolute inset-x-0 bottom-0 z-20">
                   <div className="flex justify-between items-end mb-2">
                     <h3 className="text-xl font-bold text-white">{project.title}</h3>
@@ -82,8 +84,8 @@ const ProjectCard = ({ project }) => {
                   </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       ) : (
         // --- Website Card Logic (External Link) ---
