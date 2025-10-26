@@ -2,26 +2,31 @@
 import React, { useState, useMemo } from "react";
 import projectsData from "../../utils/ProjectData";
 
-// --- Project Card (Updated to fix thumbnail display and in-page video embed) ---
+// --- Project Card (Updated to guarantee thumbnail visibility) ---
 const ProjectCard = ({ project }) => {
-  const [isPlaying, setIsPlaying] = useState(false); // New state to control embed
+  const [isPlaying, setIsPlaying] = useState(false);
   const accentColor = "#2563EB";
   const isVideo = project.category === "Video";
 
   // Creates the embed link with autoplay and clean player parameters
   const embedLink = `${project.link}?autoplay=1&modestbranding=1&rel=0&showinfo=0&fs=1`;
 
+  // Function to handle the click and prevent any link navigation
+  const handleVideoClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation(); // Crucial to prevent unexpected behavior
+    setIsPlaying(true);
+  };
+
   return (
-    // Conditional rendering for the main wrapper based on project type
-    // Website cards still use <a> for external links
-    // Video cards now use a div, as the video plays internally
+    // Main Wrapper
     <div
       className={`relative overflow-hidden rounded-2xl shadow-md border hover:shadow-xl transition-all duration-500 ${
         isVideo ? "bg-gray-900 border-gray-800" : "bg-white border-gray-100"
       }`}
     >
       {isVideo ? (
-        // --- Video Card ---
+        // --- Video Card Logic ---
         <div className="relative w-full mx-auto aspect-[9/16] max-h-[550px] rounded-2xl overflow-hidden">
           {isPlaying ? (
             // --- IFRAME EMBED (Playing State) ---
@@ -37,7 +42,7 @@ const ProjectCard = ({ project }) => {
             // --- THUMBNAIL PREVIEW (Default State, clickable to start video) ---
             <div
               className="absolute inset-0 flex flex-col justify-between group cursor-pointer"
-              onClick={() => setIsPlaying(true)} // Click handler only on the preview area
+              onClick={handleVideoClick} // Use the new click handler
             >
               {/* Video Preview */}
               <img
@@ -78,7 +83,7 @@ const ProjectCard = ({ project }) => {
           )}
         </div>
       ) : (
-        // --- Website Card (No changes here, retains external link) ---
+        // --- Website Card Logic (External Link) ---
         <a
           href={project.link || "#"}
           target="_blank"
